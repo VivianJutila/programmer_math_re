@@ -14,6 +14,20 @@ public class radialtrigger : MonoBehaviour
     private float field_of_view;
 
     [SerializeField]
+    [UnityEngine.Range(0.1f, 30f)]
+    private float cheese_block_height;
+
+    private enum Trigger_Type
+    {
+        Cheese,
+        Slice,
+        Circle
+    }
+
+	[SerializeField]
+    private Trigger_Type trigger_type;
+
+	[SerializeField]
     private List<GameObject> target_list = new List<GameObject>();
 
     [SerializeField]
@@ -86,5 +100,20 @@ public class radialtrigger : MonoBehaviour
         _return_color = _statement ? Color.green : Color.red;
 
         return _return_color;
+    }
+
+    private void DrawCheeseTrigger()
+    {
+
+    }
+
+    private void DrawSliceTrigger()
+    {
+
+    }
+
+    private void DrawSphereTrigger()
+    {
+
     }
 }
