@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Unity.VisualScripting;
@@ -5,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Animations;
 
+[InitializeOnLoad]
 public class object_placement : MonoBehaviour
 {
     [SerializeField]
@@ -22,7 +24,7 @@ public class object_placement : MonoBehaviour
     [SerializeField]
     private GameObject right_checker_game_object;
 
-    private GameObject _current_prefab_instance;
+    private static GameObject _current_prefab_instance;
 
     [SerializeField]
     [Range(-180, 180f)]
