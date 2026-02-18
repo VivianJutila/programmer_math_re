@@ -10,10 +10,6 @@ public class bezier_point : MonoBehaviour
     private float sphere_size;
 
     [SerializeField]
-    [UnityEngine.Range(0f, 25f)]
-    private float control_rod_length;
-
-    [SerializeField]
     private List<Transform> controller_transforms = new List<Transform>();
 
     private void OnDrawGizmos()
@@ -25,7 +21,11 @@ public class bezier_point : MonoBehaviour
         {
             if (t != null)
             {
-                t.localPosition = t.localPosition.normalized;
+                if (t.hasChanged)
+                {
+                    OnControlMove(t);
+                    t.hasChanged = false;
+                }
                 Gizmos.color = Color.lightCoral;
                 Gizmos.DrawLine(transform.position, t.position);
                 Gizmos.color = Color.coral;
@@ -56,5 +56,18 @@ public class bezier_point : MonoBehaviour
         {
             throw new System.Exception("There is no 2nd anchor...");
         }
+    }
+
+    private void OnControlMove(Transform _control)
+    {
+        if (controller_transforms[0] != _control)
+        {
+			controller_transforms[0].transform.position = transform.position + (-(_control.position - transform.position));
+		}
+        else
+        {
+            controller_transforms[1].transform.position = transform.position + (-(_control.position - transform.position));
+
+		}
     }
 }
