@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e61d29a7fc4fa48a2140406dad7840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bezier_path
-  t_value: 0
-  loop: 0
+  t_value: 1
+  loop: 1
   bezier_path_points:
   - {fileID: 461503190}
   - {fileID: 1484602750}
