@@ -169,6 +169,7 @@ MonoBehaviour:
   controller_transforms:
   - {fileID: 1110641528}
   - {fileID: 499191626}
+  drawing: 0
 --- !u!1 &147353032
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +220,7 @@ MonoBehaviour:
   controller_transforms:
   - {fileID: 1350216521}
   - {fileID: 1799913213}
+  drawing: 0
 --- !u!1 &176680068
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +246,7 @@ Transform:
   m_GameObject: {fileID: 176680068}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.3500004, y: 0, z: 0.59000015}
+  m_LocalPosition: {x: 3.3400006, y: 0, z: 2.6599998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -296,10 +298,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0851e75a54f48514494ab667b395bc06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bezier_point
-  sphere_size: 0.053
+  sphere_size: 0.097
   controller_transforms:
   - {fileID: 176680069}
   - {fileID: 579918261}
+  drawing: 0
 --- !u!1 &429212679
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +451,7 @@ Transform:
   m_GameObject: {fileID: 579918260}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3500004, y: 0, z: -0.59000015}
+  m_LocalPosition: {x: -3.3400002, y: 0, z: -2.6599998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -535,6 +538,7 @@ MonoBehaviour:
   controller_transforms:
   - {fileID: 2003835619}
   - {fileID: 1658776248}
+  drawing: 0
 --- !u!1 &838934812
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,9 +677,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::road_bezier
   cross_section: {fileID: 11400000, guid: 8fe3e500d392dcc4e9aad94413e4fe3d, type: 2}
-  cross_section_scalar: 0.2
+  cross_section_scalar: 0.11
   t_value: 0
-  road_segment_count: 120
+  road_segment_count: 49
   loop: 1
   bezier_path_points:
   - {fileID: 1432396654}
@@ -684,6 +688,8 @@ MonoBehaviour:
   - {fileID: 1347372980}
   - {fileID: 767741898}
   - {fileID: 144900045}
+  draw_bezier_points: 0
+  draw_underlying_bezier_curve: 0
 --- !u!1 &1347372978
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +740,7 @@ MonoBehaviour:
   controller_transforms:
   - {fileID: 656408250}
   - {fileID: 838934813}
+  drawing: 0
 --- !u!1 &1350216520
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +822,7 @@ MonoBehaviour:
   controller_transforms:
   - {fileID: 1622577203}
   - {fileID: 1154460775}
+  drawing: 0
 --- !u!1 &1619084026
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1959844696}
   - component: {fileID: 1959844695}
+  - component: {fileID: 1959844697}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1043,6 +1052,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1959844697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959844694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &2003835618
 GameObject:
   m_ObjectHideFlags: 0

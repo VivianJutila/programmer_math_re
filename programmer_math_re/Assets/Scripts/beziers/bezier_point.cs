@@ -12,26 +12,31 @@ public class bezier_point : MonoBehaviour
     [SerializeField]
     private List<Transform> controller_transforms = new List<Transform>();
 
+    public bool drawing;
+
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.floralWhite;
-        Gizmos.DrawSphere(transform.position, sphere_size);
-
-        foreach (Transform t in controller_transforms)
+        if (drawing)
         {
-            if (t != null)
-            {
-                if (t.hasChanged)
-                {
-                    OnControlMove(t);
-                    t.hasChanged = false;
-                }
-                Gizmos.color = Color.lightCoral;
-                Gizmos.DrawLine(transform.position, t.position);
-                Gizmos.color = Color.coral;
-                Gizmos.DrawSphere(t.position, sphere_size);
-            }
-        }
+			Gizmos.color = Color.floralWhite;
+			Gizmos.DrawSphere(transform.position, sphere_size);
+
+			foreach (Transform t in controller_transforms)
+			{
+				if (t != null)
+				{
+					if (t.hasChanged)
+					{
+						OnControlMove(t);
+						t.hasChanged = false;
+					}
+					Gizmos.color = Color.lightCoral;
+					Gizmos.DrawLine(transform.position, t.position);
+					Gizmos.color = Color.coral;
+					Gizmos.DrawSphere(t.position, sphere_size);
+				}
+			}
+		}
     }
 
     public Vector3 Get_1st_Control_Location()

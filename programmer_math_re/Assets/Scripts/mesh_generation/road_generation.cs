@@ -23,7 +23,13 @@ public class road_generation : MonoBehaviour
     [SerializeField]
     private List<bezier_point> bezier_path_points;
 
-    private int bezier_segment_count;
+    [SerializeField]
+    private bool draw_bezier_points;
+
+	[SerializeField]
+	private bool draw_underlying_bezier_curve;
+
+	private int bezier_segment_count;
 
     private void OnDrawGizmos()
     {
@@ -36,8 +42,26 @@ public class road_generation : MonoBehaviour
             bezier_segment_count = bezier_path_points.Count;
         }
 
-        bezier_point _current_starting_point;
+        if (!draw_bezier_points)
+        {
+            foreach (bezier_point _bez_p in bezier_path_points)
+            {
+                _bez_p.drawing = false;
+            }
+        } 
+        else if (draw_bezier_points && bezier_path_points[0].drawing == false)
+        {
+			foreach (bezier_point _bez_p in bezier_path_points)
+			{
+				_bez_p.drawing = true;
+			}
+		}
+
+            bezier_point _current_starting_point;
         bezier_point _current_ending_point;
+
+        Vector3 _last_right_direction = Vector3.zero;
+        Vector3 _last_point = Vector3.zero;
 
         for (float i = 0f; i < 1f; i += 1f / road_segment_count)
         {
@@ -51,6 +75,23 @@ public class road_generation : MonoBehaviour
 
                 Gizmos.color = Color.gold;
 
+                if (_last_right_direction != Vector3.zero && _last_point != Vector3.zero)
+                {
+					for (int j = 0; j < cross_section.vertices.Length - 2; j += 2)
+					{
+                        Vector3 _p1 = _current_point + (_current_right_direction * cross_section.vertices[j].point.x + Vector3.up * cross_section.vertices[j].point.y) * cross_section_scalar;
+                        Vector3 _p2 = _last_point + (_last_right_direction * cross_section.vertices[j].point.x + Vector3.up * cross_section.vertices[j].point.y) * cross_section_scalar;
+
+						Handles.DrawLine(_p1, _p2);
+					}
+
+					Handles.DrawLine(
+                    _current_point + (_current_right_direction * cross_section.vertices[cross_section.vertices.Length - 1].point.x + Vector3.up * cross_section.vertices[cross_section.vertices.Length - 1].point.y) * cross_section_scalar,
+
+					_last_point + (_last_right_direction * cross_section.vertices[cross_section.vertices.Length - 1].point.x + Vector3.up * cross_section.vertices[cross_section.vertices.Length - 1].point.y) * cross_section_scalar
+                    );
+				}
+
                 for(int j = 0; j < cross_section.vertices.Length - 2; j+=2)
                 {
                     Vector3 _p1 = _current_point + (_current_right_direction * cross_section.vertices[j].point.x + Vector3.up * cross_section.vertices[j].point.y) * cross_section_scalar;
@@ -62,12 +103,8 @@ public class road_generation : MonoBehaviour
                 Handles.DrawLine(_current_point + (_current_right_direction * cross_section.vertices[cross_section.vertices.Length-1].point.x + Vector3.up * cross_section.vertices[cross_section.vertices.Length - 1].point.y) * cross_section_scalar,
                     _current_point + (_current_right_direction * cross_section.vertices[0].point.x + Vector3.up * cross_section.vertices[0].point.y) * cross_section_scalar);
 
-                foreach (CrossSection.Vertex _vertex in cross_section.vertices)
-                {
-                    Gizmos.DrawSphere(_current_point + (_current_right_direction * _vertex.point.x) * cross_section_scalar + (Vector3.up * _vertex.point.y) * cross_section_scalar, 0.055f);
-                }
-
-                Gizmos.DrawSphere(_current_point, 0.09f);
+                _last_point = _current_point;
+                _last_right_direction = _current_right_direction;
             }
         }
 
@@ -90,7 +127,7 @@ public class road_generation : MonoBehaviour
             }
         }
 
-        if (bezier_path_points != null)
+        if (bezier_path_points != null && draw_underlying_bezier_curve)
         {
             for (int i = 0; i < bezier_path_points.Count - 1; ++i)
             {
